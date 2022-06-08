@@ -1,0 +1,12 @@
+﻿canvas { 
+    border: 1px solid black; 
+    /*fill: rgb(127, 192, 130);*/
+    fill: aqua;
+}
+
+b {
+    font-size: x-large;
+    /*font-style: italic;*/
+    font-weight: 600;
+}
+

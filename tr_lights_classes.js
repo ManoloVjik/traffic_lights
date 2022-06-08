@@ -10,6 +10,7 @@ class Tr_Light {
     tr_Builder() {
         //build a traffic light primitive
         //it depends of Type - for cars or for pedestrians
+        moveTo(this.leftUpX, this.leftUpY);
     }
 
     tr_Blinker() {
