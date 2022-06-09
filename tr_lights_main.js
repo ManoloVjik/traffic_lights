@@ -1,6 +1,8 @@
 ﻿// It's the main block of Traffic Lights simulator
 // I'll use HTML CANVAS vithout any libraries
 let x=0, y=0;
+let trLights = [];
+//let ctx;
 
 const canvas = document.getElementById("maincanvas");
 //console.log('we drew the canvas');
@@ -9,9 +11,66 @@ function go01() {   // function for start of work traffic light algorithm
     console.log('GO! subprogram');
 }
 
+/*function tr_ligtsGenerator() {
+    for (i=1;i<=6;i++) {
+        let trLigt = new Tr_Light(0,0,ATTITUDE[1],TYPE[0],canvas.getContext("2d"));
+        trLights.push(trLigt);
+    }
+    console.log(trLights);
+    trLights[0].tr_Builder();
+}
+tr_ligtsGenerator();*/
+
 
 if (canvas.getContext) {    //////////////////////////////////////////////////
     const ctx = canvas.getContext("2d");
+
+    function tr_ligtsGenerator() {
+        for (i=1;i<=6;i++) {
+            let trLigt = new Tr_Light(0, 0, ATTITUDE[1], TYPE[0], ctx);
+            trLights.push(trLigt);
+            switch(i) {
+                case 1: {
+                    trLights[i-1].leftUpX = 200;
+                    trLights[i-1].leftUpY = 150;
+                    break;
+                }
+                case 2: {
+                    trLights[i-1].leftUpX = 370;
+                    trLights[i-1].leftUpY = 150;
+                    trLights[i-1].attitude = ATTITUDE[0];   //horizontal
+                    break;
+                }
+                case 3: {
+                    trLights[i-1].leftUpX = 370;
+                    trLights[i-1].leftUpY = 370;
+                    break;
+                }
+                case 4: {
+                    trLights[i-1].leftUpX = 200;
+                    trLights[i-1].leftUpY = 370;
+                    trLights[i-1].attitude = ATTITUDE[0];   //horizontal
+                    break;
+                }
+                case 5: {
+                    trLights[i-1].leftUpX = 200;
+                    trLights[i-1].leftUpY = 100;
+                    trLights[i-1].types = TYPE[1];
+                    break;
+                }
+                case 6: {
+                    trLights[i-1].leftUpX = 200;
+                    trLights[i-1].leftUpY = 370;
+                    trLights[i-1].types = TYPE[1];
+                    break;
+                }
+            }
+        }
+        
+        console.log(trLights);
+    }
+    tr_ligtsGenerator();
+    
     
     function drawField() {  // Function for drawing the green field
         ctx.fillStyle = "YellowGreen";
@@ -91,6 +150,10 @@ if (canvas.getContext) {    //////////////////////////////////////////////////
         ctx.stroke();
     }    
     drawRoads();
+
+    trLights[0].tr_Builder();
+
+
 
 
 
