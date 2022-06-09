@@ -18,9 +18,17 @@ TYPE = [
 ];
 
 COLORS = [
-    'red',      // 0
-    'yellow',   // 1
-    'green',    // 2
-    'grey',     // 3
-    'black',    // 4
+    'red',          // 0
+    'yellow',       // 1
+    'green',        // 2
+    'grey',         // 3
+    'LightGrey',    // 4
+    'black',        // 5
+    'white',        // 6
+];
+
+COORD = [
+    0,
+    250,
+    350,
 ];
