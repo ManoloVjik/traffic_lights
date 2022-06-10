@@ -6,20 +6,54 @@ class Tr_Light {
         this.attitude = attitude;
         this.types = types;
         this.ctxx = ctxx;
+        let redd = false, yell = false, zell = false;
     }
 
-    tr_Builder() {
+    tr_Builder(red, yel, zel) {   // red, yel, zel
         //build a traffic light primitive
         //it depends of Type - for cars or for pedestrians
         //moveTo(this.leftUpX, this.leftUpY);
-        console.log('it is tr_Builder');
+        console.log('it is tr_Builder');   
+        console.log(red, yel, zel);
+        
         this.ctxx.beginPath();
-        this.ctxx.fillStyle = "black"; //COLORS[5];
+        this.ctxx.fillStyle = COLORS[3];
         this.ctxx.fillRect(this.leftUpX, this.leftUpY, 40, 70);
         this.ctxx.fill();
+
+        this.ctxx.beginPath();
+        this.ctxx.fillStyle = COLORS[4];
+        this.ctxx.arc((this.leftUpX+20), (this.leftUpY+14), 12, 0, 2*Math.PI);
+        this.ctxx.arc((this.leftUpX+20), (this.leftUpY+40), 12, 0, 2*Math.PI);
+        this.ctxx.arc((this.leftUpX+20), (this.leftUpY+66), 12, 0, 2*Math.PI);
+        this.ctxx.fill();
+        
+
+        if (red) {
+            console.log('red!');
+            this.ctxx.beginPath();
+            this.ctxx.fillStyle = COLORS[0];
+            this.ctxx.arc((this.leftUpX+20), (this.leftUpY+14), 12, 0, 2*Math.PI);
+            this.ctxx.fill();
+        }
+
+        if (yel) {
+            this.ctxx.beginPath();
+            this.ctxx.fillStyle = COLORS[1];
+            this.ctxx.arc((this.leftUpX+20), (this.leftUpY+40), 12, 0, 2*Math.PI);
+            this.ctxx.fill();
+        }
+
+        if (zel) {
+            this.ctxx.beginPath();
+            this.ctxx.fillStyle = COLORS[2];
+            this.ctxx.arc((this.leftUpX+20), (this.leftUpY+66), 12, 0, 2*Math.PI);
+            this.ctxx.fill();
+        }
     }
 
     tr_Blinker() {
         // blink and reblink of lights 
+
     }
 }

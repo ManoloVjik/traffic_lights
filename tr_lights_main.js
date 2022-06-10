@@ -151,7 +151,7 @@ if (canvas.getContext) {    //////////////////////////////////////////////////
     }    
     drawRoads();
 
-    trLights[0].tr_Builder();
+    trLights[0].tr_Builder(false, true, false);
 
 
 
