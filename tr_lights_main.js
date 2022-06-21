@@ -32,7 +32,7 @@ if (canvas.getContext) {    //////////////////////////////////////////////////
             switch(i) {
                 case 1: {
                     trLights[i-1].leftUpX = 200;
-                    trLights[i-1].leftUpY = 150;
+                    trLights[i-1].leftUpY = 140;
                     break;
                 }
                 case 2: {
@@ -42,8 +42,8 @@ if (canvas.getContext) {    //////////////////////////////////////////////////
                     break;
                 }
                 case 3: {
-                    trLights[i-1].leftUpX = 370;
-                    trLights[i-1].leftUpY = 370;
+                    trLights[i-1].leftUpX = 360;
+                    trLights[i-1].leftUpY = 380;
                     break;
                 }
                 case 4: {
@@ -152,6 +152,7 @@ if (canvas.getContext) {    //////////////////////////////////////////////////
     drawRoads();
 
     trLights[0].tr_Builder(false, true, false);
+    trLights[2].tr_Builder(false, true, false);
 
 
 

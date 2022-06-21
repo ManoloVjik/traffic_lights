@@ -16,17 +16,29 @@ class Tr_Light {
         console.log('it is tr_Builder');   
         console.log(red, yel, zel);
         
-        this.ctxx.beginPath();
+        this.ctxx.beginPath(); //draw the grey box for the traffic-light
         this.ctxx.fillStyle = COLORS[3];
-        this.ctxx.fillRect(this.leftUpX, this.leftUpY, 40, 70);
+        this.ctxx.fillRect(this.leftUpX, this.leftUpY, 40, 82);
         this.ctxx.fill();
 
-        this.ctxx.beginPath();
+        this.ctxx.beginPath(); //draw 3 lights
         this.ctxx.fillStyle = COLORS[4];
         this.ctxx.arc((this.leftUpX+20), (this.leftUpY+14), 12, 0, 2*Math.PI);
         this.ctxx.arc((this.leftUpX+20), (this.leftUpY+40), 12, 0, 2*Math.PI);
         this.ctxx.arc((this.leftUpX+20), (this.leftUpY+66), 12, 0, 2*Math.PI);
         this.ctxx.fill();
+
+        this.ctxx.beginPath(); //draw 3 sun-blind arcs above lights
+        this.ctxx.strokeStyle = COLORS[5];
+        this.ctxx.lineWidth = 2;
+        this.ctxx.arc((this.leftUpX+20), (this.leftUpY+14), 13, 1.1*Math.PI, 1.9*Math.PI);
+        this.ctxx.stroke();
+        this.ctxx.beginPath();
+        this.ctxx.arc((this.leftUpX+20), (this.leftUpY+40), 13, 1.1*Math.PI, 1.9*Math.PI);
+        this.ctxx.stroke();
+        this.ctxx.beginPath();
+        this.ctxx.arc((this.leftUpX+20), (this.leftUpY+66), 13, 1.1*Math.PI, 1.9*Math.PI);
+        this.ctxx.stroke();
         
 
         if (red) {
