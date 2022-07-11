@@ -5,6 +5,7 @@ let trLights = [];
 let arcBegin=0, arcEnd=0;
 let xX=0, yY=0;
 let deltaX=0, deltaY=0;
+let i=0, j=0, ii=0, jj=0;
 //let ctx;
 
 const canvas = document.getElementById("maincanvas");
@@ -50,8 +51,8 @@ if (canvas.getContext) {    //////////////////////////////////////////////////
                     break;
                 }
                 case 4: {
-                    trLights[i-1].leftUpX = 200;
-                    trLights[i-1].leftUpY = 370;
+                    trLights[i-1].leftUpX = 140;
+                    trLights[i-1].leftUpY = 360;
                     trLights[i-1].attitude = ATTITUDE[0];   //horizontal
                     break;
                 }
@@ -153,11 +154,11 @@ if (canvas.getContext) {    //////////////////////////////////////////////////
     }    
     drawRoads();
 
-    trLights[0].tr_Builder(false, true, false);
-    trLights[2].tr_Builder(false, true, false);
+    trLights[0].tr_Builder(true, true, true);
+    trLights[2].tr_Builder(true, true, true);
 
-    trLights[1].tr_Builder(false, true, false);
-
+    trLights[1].tr_Builder(true, true, true);
+    trLights[3].tr_Builder(true, true, true);
 
 
 

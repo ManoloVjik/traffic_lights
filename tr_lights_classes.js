@@ -22,8 +22,8 @@ class Tr_Light {
                 console.log('attitude vertical');
                 arcBegin = ARCS_BLENDS[0];
                 arcEnd = ARCS_BLENDS[1];
-                xX = 40;
-                yY = 82;
+                xX = DELTA[2]; // 40
+                yY = DELTA[3]; // 82
                 deltaX = 20;
                 deltaY = 14;
                 break;
@@ -32,8 +32,8 @@ class Tr_Light {
                 console.log('attitude horisontal');
                 arcBegin = ARCS_BLENDS[2];
                 arcEnd = ARCS_BLENDS[3];
-                xX = 82;
-                yY = 40;
+                xX = DELTA[3]; //82;
+                yY = DELTA[2]; //40
                 break;
             }
         }
@@ -45,46 +45,83 @@ class Tr_Light {
 
         this.ctxx.beginPath(); //draw 3 lights
         this.ctxx.fillStyle = COLORS[4];
-        this.ctxx.arc((this.leftUpX+20), (this.leftUpY+14), 12, 0, 2*Math.PI); //упаковать этот блок в цикд FOR от 1 до 3 одной строкой!
+        /* this.ctxx.arc((this.leftUpX+20), (this.leftUpY+14), 12, 0, 2*Math.PI); //упаковать этот блок в цикд FOR от 1 до 3 одной строкой!
         this.ctxx.arc((this.leftUpX+20), (this.leftUpY+40), 12, 0, 2*Math.PI); //
-        this.ctxx.arc((this.leftUpX+20), (this.leftUpY+66), 12, 0, 2*Math.PI); //
+        this.ctxx.arc((this.leftUpX+20), (this.leftUpY+66), 12, 0, 2*Math.PI); // */
+        if (this.attitude==ATTITUDE[1]) {
+            for (ii=0;ii<3;ii++) {
+                this.ctxx.arc((this.leftUpX+20), (this.leftUpY+14+26*ii), 12, 0, 2*Math.PI);
+            }
+        }
+        if (this.attitude==ATTITUDE[0]) {
+            for (ii=0;ii<3;ii++) {
+                this.ctxx.arc((this.leftUpX+14+26*ii), (this.leftUpY+20), 12, 0, 2*Math.PI);
+            }
+        }
         this.ctxx.fill();
-
         
-
-        this.ctxx.beginPath(); //draw 3 sun-blind arcs above lights
-        this.ctxx.strokeStyle = COLORS[5];
+                
+        this.ctxx.strokeStyle = COLORS[5]; //draw 3 sun-blind arcs above lights
         this.ctxx.lineWidth = 2;
-        this.ctxx.arc((this.leftUpX+20), (this.leftUpY+14), 13, arcBegin, arcEnd);
-        this.ctxx.stroke();
-        this.ctxx.beginPath();
-        this.ctxx.arc((this.leftUpX+20), (this.leftUpY+40), 13, arcBegin, arcEnd);
-        this.ctxx.stroke();
-        this.ctxx.beginPath();
-        this.ctxx.arc((this.leftUpX+20), (this.leftUpY+66), 13, arcBegin, arcEnd);
-        this.ctxx.stroke();
+        if (this.attitude==ATTITUDE[1]) {
+            for (ii=0;ii<3;ii++) {
+                this.ctxx.beginPath(); 
+                this.ctxx.arc((this.leftUpX+20), (this.leftUpY+14+26*ii), 13, arcBegin, arcEnd);
+                this.ctxx.stroke();
+            }
+        }
+        if (this.attitude==ATTITUDE[0]) {
+            for (ii=0;ii<3;ii++) {
+                this.ctxx.beginPath(); //draw 3 sun-blind arcs above lights
+                this.ctxx.arc((this.leftUpX+14+26*ii), (this.leftUpY+20), 13, arcBegin, arcEnd);
+                this.ctxx.stroke();
+            }
+        } 
         
-        
-
         if (red) {
             console.log('red!');
             this.ctxx.beginPath();
             this.ctxx.fillStyle = COLORS[0];
-            this.ctxx.arc((this.leftUpX+20), (this.leftUpY+14), 12, 0, 2*Math.PI);
+            //this.ctxx.arc((this.leftUpX+20), (this.leftUpY+14), 12, 0, 2*Math.PI);
+            if (this.attitude==ATTITUDE[1]) {
+                if (this.num==1) {
+                    this.ctxx.arc((this.leftUpX+20), (this.leftUpY+66), 12, 0, 2*Math.PI);
+                } else {
+                    this.ctxx.arc((this.leftUpX+20), (this.leftUpY+14), 12, 0, 2*Math.PI);
+                }
+            } 
+            if (this.attitude==ATTITUDE[0]) {
+                this.ctxx.arc((this.leftUpX+14), (this.leftUpY+20), 12, 0, 2*Math.PI);
+            }
             this.ctxx.fill();
         }
 
         if (yel) {
             this.ctxx.beginPath();
             this.ctxx.fillStyle = COLORS[1];
-            this.ctxx.arc((this.leftUpX+20), (this.leftUpY+40), 12, 0, 2*Math.PI);
+            if (this.attitude==ATTITUDE[1]) {
+                this.ctxx.arc((this.leftUpX+20), (this.leftUpY+40), 12, 0, 2*Math.PI);
+            } 
+            if (this.attitude==ATTITUDE[0]) {
+                this.ctxx.arc((this.leftUpX+40), (this.leftUpY+20), 12, 0, 2*Math.PI);
+            }
             this.ctxx.fill();
         }
 
         if (zel) {
             this.ctxx.beginPath();
             this.ctxx.fillStyle = COLORS[2];
-            this.ctxx.arc((this.leftUpX+20), (this.leftUpY+66), 12, 0, 2*Math.PI);
+            //this.ctxx.arc((this.leftUpX+20), (this.leftUpY+66), 12, 0, 2*Math.PI);
+            if (this.attitude==ATTITUDE[1]) {
+                if (this.num==1) {
+                    this.ctxx.arc((this.leftUpX+20), (this.leftUpY+14), 12, 0, 2*Math.PI);
+                } else {
+                    this.ctxx.arc((this.leftUpX+20), (this.leftUpY+66), 12, 0, 2*Math.PI);
+                }
+            } 
+            if (this.attitude==ATTITUDE[0]) {
+                this.ctxx.arc((this.leftUpX+66), (this.leftUpY+20), 12, 0, 2*Math.PI);
+            }
             this.ctxx.fill();
         }
     }

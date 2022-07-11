@@ -41,6 +41,8 @@ ARCS_BLENDS = [            // points for ARC-building (arc blends above the ligh
 ]
 
 DELTA = [
-    20, // 0 - deltaX for vertical
-    
-]
+    20, // 0 - deltaX for vertical or deltaY for horizontal
+    14, // 1 - deltaY for vertical or deltaX for horizontal
+    40, // 2 - rectangle X wide for vertical or Y wide for horizontal
+    82, // 3 - rectangle Y wide fpr vertical or X wide for horizontal
+];
