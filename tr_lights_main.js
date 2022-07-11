@@ -2,6 +2,9 @@
 // I'll use HTML CANVAS vithout any libraries
 let x=0, y=0;
 let trLights = [];
+let arcBegin=0, arcEnd=0;
+let xX=0, yY=0;
+let deltaX=0, deltaY=0;
 //let ctx;
 
 const canvas = document.getElementById("maincanvas");
@@ -27,7 +30,7 @@ if (canvas.getContext) {    //////////////////////////////////////////////////
 
     function tr_ligtsGenerator() {
         for (i=1;i<=6;i++) {
-            let trLigt = new Tr_Light(0, 0, ATTITUDE[1], TYPE[0], ctx);
+            let trLigt = new Tr_Light(i, 0, 0, ATTITUDE[1], TYPE[0], ctx);
             trLights.push(trLigt);
             switch(i) {
                 case 1: {
@@ -36,8 +39,8 @@ if (canvas.getContext) {    //////////////////////////////////////////////////
                     break;
                 }
                 case 2: {
-                    trLights[i-1].leftUpX = 370;
-                    trLights[i-1].leftUpY = 150;
+                    trLights[i-1].leftUpX = 380;
+                    trLights[i-1].leftUpY = 200;
                     trLights[i-1].attitude = ATTITUDE[0];   //horizontal
                     break;
                 }
@@ -65,8 +68,7 @@ if (canvas.getContext) {    //////////////////////////////////////////////////
                     break;
                 }
             }
-        }
-        
+        }        
         console.log(trLights);
     }
     tr_ligtsGenerator();
@@ -154,7 +156,7 @@ if (canvas.getContext) {    //////////////////////////////////////////////////
     trLights[0].tr_Builder(false, true, false);
     trLights[2].tr_Builder(false, true, false);
 
-
+    trLights[1].tr_Builder(false, true, false);
 
 
 

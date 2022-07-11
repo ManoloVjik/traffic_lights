@@ -32,3 +32,15 @@ COORD = [
     250,
     350,
 ];
+
+ARCS_BLENDS = [            // points for ARC-building (arc blends above the lights)
+    1.1*Math.PI,    // 0 - begin point for vertical light line
+    1.9*Math.PI,    // 1 - end point for vertical light line
+    0.6*Math.PI,    // 2 - begin point for horizontal light line
+    1.4*Math.PI,    // 3 - end point for horizontal light line
+]
+
+DELTA = [
+    20, // 0 - deltaX for vertical
+    
+]
