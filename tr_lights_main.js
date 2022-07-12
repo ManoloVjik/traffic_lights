@@ -13,6 +13,9 @@ const canvas = document.getElementById("maincanvas");
 
 function go01() {   // function for start of work traffic light algorithm
     console.log('GO! subprogram');
+    for (i=0;i<4;i++) {
+        trLights[i].tr_Builder(true, true, true);
+    }
 }
 
 /*function tr_ligtsGenerator() {
@@ -154,11 +157,11 @@ if (canvas.getContext) {    //////////////////////////////////////////////////
     }    
     drawRoads();
 
-    trLights[0].tr_Builder(true, true, true);
-    trLights[2].tr_Builder(true, true, true);
-
-    trLights[1].tr_Builder(true, true, true);
-    trLights[3].tr_Builder(true, true, true);
+    for (i=0;i<4;i++) {
+        trLights[i].tr_Builder(false, false, false);
+    }
+    
+    
 
 
 

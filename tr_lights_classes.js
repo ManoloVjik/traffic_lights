@@ -15,13 +15,18 @@ class Tr_Light {
         //it depends of Type - for cars or for pedestrians
         //moveTo(this.leftUpX, this.leftUpY);
         console.log('it is tr_Builder');   
-        console.log(this.num, red, yel, zel);
+        //console.log(this.num, red, yel, zel);
 
         switch (this.attitude) { // set basical coordinates and primitives depends of attitude
             case (ATTITUDE[1]): {
-                console.log('attitude vertical');
-                arcBegin = ARCS_BLENDS[0];
-                arcEnd = ARCS_BLENDS[1];
+                //console.log('attitude vertical');
+                if (this.num==1) {
+                    arcBegin = ARCS_BLENDS[2];
+                    arcEnd = ARCS_BLENDS[3];
+                } else {
+                    arcBegin = ARCS_BLENDS[0];
+                    arcEnd = ARCS_BLENDS[1];
+                }
                 xX = DELTA[2]; // 40
                 yY = DELTA[3]; // 82
                 deltaX = 20;
@@ -29,9 +34,14 @@ class Tr_Light {
                 break;
             }
             case (ATTITUDE[0]): {
-                console.log('attitude horisontal');
-                arcBegin = ARCS_BLENDS[2];
-                arcEnd = ARCS_BLENDS[3];
+                //console.log('attitude horisontal');
+                if (this.num==4) {
+                    arcBegin = ARCS_BLENDS[6];
+                    arcEnd = ARCS_BLENDS[7];
+                } else {
+                    arcBegin = ARCS_BLENDS[4];
+                    arcEnd = ARCS_BLENDS[5];
+                }
                 xX = DELTA[3]; //82;
                 yY = DELTA[2]; //40
                 break;
@@ -43,11 +53,8 @@ class Tr_Light {
         this.ctxx.fillRect(this.leftUpX, this.leftUpY, xX, yY);
         this.ctxx.fill();
 
-        this.ctxx.beginPath(); //draw 3 lights
-        this.ctxx.fillStyle = COLORS[4];
-        /* this.ctxx.arc((this.leftUpX+20), (this.leftUpY+14), 12, 0, 2*Math.PI); //упаковать этот блок в цикд FOR от 1 до 3 одной строкой!
-        this.ctxx.arc((this.leftUpX+20), (this.leftUpY+40), 12, 0, 2*Math.PI); //
-        this.ctxx.arc((this.leftUpX+20), (this.leftUpY+66), 12, 0, 2*Math.PI); // */
+        this.ctxx.beginPath(); //draw 3 grey lights as a background
+        this.ctxx.fillStyle = COLORS[4];        
         if (this.attitude==ATTITUDE[1]) {
             for (ii=0;ii<3;ii++) {
                 this.ctxx.arc((this.leftUpX+20), (this.leftUpY+14+26*ii), 12, 0, 2*Math.PI);
@@ -58,8 +65,7 @@ class Tr_Light {
                 this.ctxx.arc((this.leftUpX+14+26*ii), (this.leftUpY+20), 12, 0, 2*Math.PI);
             }
         }
-        this.ctxx.fill();
-        
+        this.ctxx.fill();        
                 
         this.ctxx.strokeStyle = COLORS[5]; //draw 3 sun-blind arcs above lights
         this.ctxx.lineWidth = 2;
@@ -78,11 +84,10 @@ class Tr_Light {
             }
         } 
         
-        if (red) {
-            console.log('red!');
+        if (red) { // Draw colored lights ! (could be make a three subprogramm!!!)
+            //console.log('red!');
             this.ctxx.beginPath();
             this.ctxx.fillStyle = COLORS[0];
-            //this.ctxx.arc((this.leftUpX+20), (this.leftUpY+14), 12, 0, 2*Math.PI);
             if (this.attitude==ATTITUDE[1]) {
                 if (this.num==1) {
                     this.ctxx.arc((this.leftUpX+20), (this.leftUpY+66), 12, 0, 2*Math.PI);
@@ -91,7 +96,11 @@ class Tr_Light {
                 }
             } 
             if (this.attitude==ATTITUDE[0]) {
-                this.ctxx.arc((this.leftUpX+14), (this.leftUpY+20), 12, 0, 2*Math.PI);
+                if (this.num==4) {
+                    this.ctxx.arc((this.leftUpX+66), (this.leftUpY+20), 12, 0, 2*Math.PI);
+                } else {
+                    this.ctxx.arc((this.leftUpX+14), (this.leftUpY+20), 12, 0, 2*Math.PI);
+                }
             }
             this.ctxx.fill();
         }
@@ -120,7 +129,11 @@ class Tr_Light {
                 }
             } 
             if (this.attitude==ATTITUDE[0]) {
-                this.ctxx.arc((this.leftUpX+66), (this.leftUpY+20), 12, 0, 2*Math.PI);
+                if (this.num==4) {
+                    this.ctxx.arc((this.leftUpX+14), (this.leftUpY+20), 12, 0, 2*Math.PI);
+                } else {
+                    this.ctxx.arc((this.leftUpX+66), (this.leftUpY+20), 12, 0, 2*Math.PI);
+                }
             }
             this.ctxx.fill();
         }
