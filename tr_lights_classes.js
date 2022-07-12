@@ -14,16 +14,16 @@ class Tr_Light {
         //build a traffic light primitive
         //it depends of Type - for cars or for pedestrians
         //moveTo(this.leftUpX, this.leftUpY);
-        console.log('it is tr_Builder');   
+        //console.log('it is tr_Builder');   
         //console.log(this.num, red, yel, zel);
 
         switch (this.attitude) { // set basical coordinates and primitives depends of attitude
             case (ATTITUDE[1]): {
                 //console.log('attitude vertical');
-                if (this.num==1) {
+                if (this.num==1) {      // vertical opposite order
                     arcBegin = ARCS_BLENDS[2];
                     arcEnd = ARCS_BLENDS[3];
-                } else {
+                } else {                // vertical straight order
                     arcBegin = ARCS_BLENDS[0];
                     arcEnd = ARCS_BLENDS[1];
                 }
@@ -35,10 +35,10 @@ class Tr_Light {
             }
             case (ATTITUDE[0]): {
                 //console.log('attitude horisontal');
-                if (this.num==4) {
+                if (this.num==4) {      // horizontal opposite order
                     arcBegin = ARCS_BLENDS[6];
                     arcEnd = ARCS_BLENDS[7];
-                } else {
+                } else {                // horizontal straight order
                     arcBegin = ARCS_BLENDS[4];
                     arcEnd = ARCS_BLENDS[5];
                 }
@@ -55,12 +55,12 @@ class Tr_Light {
 
         this.ctxx.beginPath(); //draw 3 grey lights as a background
         this.ctxx.fillStyle = COLORS[4];        
-        if (this.attitude==ATTITUDE[1]) {
+        if (this.attitude==ATTITUDE[1]) {   // vertical
             for (ii=0;ii<3;ii++) {
                 this.ctxx.arc((this.leftUpX+20), (this.leftUpY+14+26*ii), 12, 0, 2*Math.PI);
             }
         }
-        if (this.attitude==ATTITUDE[0]) {
+        if (this.attitude==ATTITUDE[0]) {   // horizontal
             for (ii=0;ii<3;ii++) {
                 this.ctxx.arc((this.leftUpX+14+26*ii), (this.leftUpY+20), 12, 0, 2*Math.PI);
             }
@@ -69,8 +69,8 @@ class Tr_Light {
                 
         this.ctxx.strokeStyle = COLORS[5]; //draw 3 sun-blind arcs above lights
         this.ctxx.lineWidth = 2;
-        if (this.attitude==ATTITUDE[1]) {
-            for (ii=0;ii<3;ii++) {
+        if (this.attitude==ATTITUDE[1]) {   // vertical
+            for (ii=0;ii<3;ii++) {          // 
                 this.ctxx.beginPath(); 
                 this.ctxx.arc((this.leftUpX+20), (this.leftUpY+14+26*ii), 13, arcBegin, arcEnd);
                 this.ctxx.stroke();
