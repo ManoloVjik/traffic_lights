@@ -42,7 +42,7 @@ ARCS_BLENDS = [            // points for ARC-building (arc blends above the ligh
     1.4*Math.PI,    // 3 - end point for horizontal light line num==2
     1.6*Math.PI,    // 4 - begin point for horizontal light line num==4
     0.4*Math.PI,    // 5 - end point for horizontal light line num==4
-]
+];
 
 DELTA = [
     20, // 0 - deltaX for vertical or deltaY for horizontal
@@ -50,3 +50,17 @@ DELTA = [
     40, // 2 - rectangle X wide for vertical or Y wide for horizontal
     82, // 3 - rectangle Y wide fpr vertical or X wide for horizontal
 ];
+
+FREEZ = [
+    5000,   // freez time for red and green lights
+    2000,   // freez time for yellow light
+    500,    // freez time for blinking of lights
+]
+
+function sleep(milliseconds) {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+      currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+  }

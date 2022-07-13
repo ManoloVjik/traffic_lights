@@ -11,11 +11,42 @@ let i=0, j=0, ii=0, jj=0;
 const canvas = document.getElementById("maincanvas");
 //console.log('we drew the canvas');
 
+function step00() {     // clear the lights!
+    for (i=0;i<4;i++) {     
+        trLights[i].tr_Builder(false, false, false);
+    }
+}
+function step01() {     // first light position - red for lights 0 and 2, green for 1 and 3
+    for (i=0;i<4;i=i+2) {
+        trLights[i].tr_Builder(true, false, false);
+    }
+    for (i=1;i<4;i=i+2) {
+        trLights[i].tr_Builder(false, false, true);
+    }
+    
+}
+function step02() {
+    console.log('sleeping ' + FREEZ[0]/1000 + ' sec.');
+    sleep(FREEZ[0]);    // 5sec. delay
+    console.log(`wake up`);
+}
+function step03() {
+    for (i=0;i<4;i=i+2) {
+        trLights[i].tr_Builder(false, false, true);
+    }
+    for (i=1;i<4;i=i+2) {
+        trLights[i].tr_Builder(true, false, false);
+    }
+}
+
 function go01() {   // function for start of work traffic light algorithm
     console.log('GO! subprogram');
-    for (i=0;i<4;i++) {
-        trLights[i].tr_Builder(true, true, true);
-    }
+    step00();
+    step01();
+    step02();
+    //step00();
+    step03();   
+    
 }
 
 /*function tr_ligtsGenerator() {
