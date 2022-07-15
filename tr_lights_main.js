@@ -5,7 +5,7 @@ let trLights = [];
 let arcBegin=0, arcEnd=0;
 let xX=0, yY=0;
 let deltaX=0, deltaY=0;
-let i=0, j=0, ii=0, jj=0;
+let i=0, j=0, ii=0, jj=0, pox=0;
 //let ctx;
 
 const canvas = document.getElementById("maincanvas");
@@ -25,10 +25,17 @@ function step01() {     // first light position - red for lights 0 and 2, green 
     }
     
 }
-function step02() {
-    console.log('sleeping ' + FREEZ[0]/1000 + ' sec.');
-    sleep(FREEZ[0]);    // 5sec. delay
-    console.log(`wake up`);
+function step02(pare_lights) {      //yellow blink
+    switch(pare_lights) {
+        case 0: {
+            trLights[0].tr_Builder(true, true, false);
+            trLights[2].tr_Builder(true, true, false);
+        }
+        case 1: {
+            trLights[1].tr_Builder(false, true, false);
+            trLights[3].tr_Builder(false, true, false);
+        }
+    }
 }
 function step03() {
     for (i=0;i<4;i=i+2) {
@@ -43,9 +50,17 @@ function go01() {   // function for start of work traffic light algorithm
     console.log('GO! subprogram');
     step00();
     step01();
-    step02();
+    for (i=1;i<10;i++) {
+        if ((i%2)==0) {
+            pox=1
+        } else pox=0;
+        console.log(pox);
+        setTimeout(step02(pox), 5000);
+        setTimeout(step03,2000);
+    }
+    //step02();
     //step00();
-    step03();   
+    //step03();   
     
 }
 
