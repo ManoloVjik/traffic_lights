@@ -1,0 +1,7 @@
+﻿################################################################################
+summer 2022
+################################################################################
+This project imitates work of traffic light in the simple town crossroads.
+But, I was surprised when I couldn't set simle time delays for lights reblink...
+And, I'm sure - it's time for study JS Promises and Callbacks mechanisms.
+################################################################################
