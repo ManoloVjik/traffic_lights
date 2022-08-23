@@ -93,7 +93,25 @@ function go02() {
     console.log(goStop);
 }
 
+function way_West_East() { // lights position when green works for North and South ways
+    for (i=0;i<4;i=i+2) {
+        trLights[i].tr_Builder(true, false, false);
+    }
+    for (i=1;i<4;i=i+2) {
+        trLights[i].tr_Builder(false, false, true);
+    }
+    console.log('North-South');
+}
 
+function way_North_South() { // lights position when green works for West and East ways
+    for (i=0;i<4;i=i+2) {
+        trLights[i].tr_Builder(false, false, true);
+    }
+    for (i=1;i<4;i=i+2) {
+        trLights[i].tr_Builder(true, false, false);
+    }
+    console.log('West-East');
+}
 
 
 if (canvas.getContext) {    //////////////////////////////////////////////////
@@ -224,21 +242,23 @@ if (canvas.getContext) {    //////////////////////////////////////////////////
     }    
     drawRoads();
 
-    for (i=0;i<4;i++) {
+    /* for (i=0;i<4;i++) {
         trLights[i].tr_Builder(false, false, false);
-    }
-    
-    function proverkaTest() {
+    } */
+    step00();
+
+    /* function proverkaTest() {
         do {
             /* step01();
             setTimeout(proverka,5000);
-            setTimeout(step03,7000); */
+            setTimeout(step03,7000); 
             console.log('proverkaTest');
         } while (goStop);
-    }
-    proverkaTest();
+    } */
+    //proverkaTest(); 
 
-
+    setTimeout(way_North_South(), 5000);
+    setTimeout(way_West_East(), 5000);
 
 }
 
