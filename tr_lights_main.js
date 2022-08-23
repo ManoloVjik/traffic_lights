@@ -6,6 +6,7 @@ let arcBegin=0, arcEnd=0;
 let xX=0, yY=0;
 let deltaX=0, deltaY=0;
 let i=0, j=0, ii=0, jj=0, pox=0;
+let goStop = false;
 //let ctx;
 
 const canvas = document.getElementById("maincanvas");
@@ -23,12 +24,12 @@ function step01() {     // first light position - red for lights 0 and 2, green 
     for (i=1;i<4;i=i+2) {
         trLights[i].tr_Builder(false, false, true);
     }
-    
+    console.log('first step');
 }
 function step02(pare_lights) {      //yellow blink
     switch(pare_lights) {
         case 0: {
-            trLights[0].tr_Builder(true, true, false);
+            trLights[0].tr_Builder(true, true, false);  // from red to green
             trLights[2].tr_Builder(true, true, false);
         }
         case 1: {
@@ -36,6 +37,7 @@ function step02(pare_lights) {      //yellow blink
             trLights[3].tr_Builder(false, true, false);
         }
     }
+    console.log('yellow');
 }
 function step03() {
     for (i=0;i<4;i=i+2) {
@@ -44,41 +46,60 @@ function step03() {
     for (i=1;i<4;i=i+2) {
         trLights[i].tr_Builder(true, false, false);
     }
+    console.log('second step');
+}
+function proverka(){
+    switch (pox) {
+        case 0: {
+            setTimeout(step02(pox), 5000);
+            pox = 1;
+            break;
+        }
+        case 1: {
+            setTimeout(step02(pox), 5000);
+            pox = 0;
+            break;
+        }
+    }
 }
 
 function go01() {   // function for start of work traffic light algorithm
     console.log('GO! subprogram');
+    goStop = true;
     step00();
-    step01();
-    for (i=1;i<10;i++) {
+    console.log(goStop);
+    //step01();
+    /* setTimeout(step01,5000);
+    for (i=1;i<30;i++) {
         if ((i%2)==0) {
-            pox=1
-        } else pox=0;
+            pox=1;
+            setTimeout(step02(pox), 5000);
+        } else {
+            pox=0;
+            setTimeout(step02(pox), 5000);
+        }
         console.log(pox);
-        setTimeout(step02(pox), 5000);
         setTimeout(step03,2000);
-    }
+    } */
     //step02();
     //step00();
     //step03();   
     
 }
 
-/*function tr_ligtsGenerator() {
-    for (i=1;i<=6;i++) {
-        let trLigt = new Tr_Light(0,0,ATTITUDE[1],TYPE[0],canvas.getContext("2d"));
-        trLights.push(trLigt);
-    }
-    console.log(trLights);
-    trLights[0].tr_Builder();
+function go02() {
+    console.log('STOP! subprogram');
+    goStop = false;
+    console.log(goStop);
 }
-tr_ligtsGenerator();*/
+
+
 
 
 if (canvas.getContext) {    //////////////////////////////////////////////////
     const ctx = canvas.getContext("2d");
 
-    function tr_ligtsGenerator() {
+    function tr_ligtsGenerator() {  // make 6 traddic lights with basic paramrters
         for (i=1;i<=6;i++) {
             let trLigt = new Tr_Light(i, 0, 0, ATTITUDE[1], TYPE[0], ctx);
             trLights.push(trLigt);
@@ -207,7 +228,15 @@ if (canvas.getContext) {    //////////////////////////////////////////////////
         trLights[i].tr_Builder(false, false, false);
     }
     
-    
+    function proverkaTest() {
+        do {
+            /* step01();
+            setTimeout(proverka,5000);
+            setTimeout(step03,7000); */
+            console.log('proverkaTest');
+        } while (goStop);
+    }
+    proverkaTest();
 
 
 
