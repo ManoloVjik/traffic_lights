@@ -68,9 +68,10 @@ function go01() {   // function for start of work traffic light algorithm
     goStop = true;
     step00();
     console.log(goStop);
-    //step01();
-    /* setTimeout(step01,5000);
-    for (i=1;i<30;i++) {
+    way_North_South();
+    workTrLight();
+    
+    /*for (i=1;i<30;i++) {
         if ((i%2)==0) {
             pox=1;
             setTimeout(step02(pox), 5000);
@@ -91,6 +92,17 @@ function go02() {
     console.log('STOP! subprogram');
     goStop = false;
     console.log(goStop);
+    workTrLight();
+}
+
+function workTrLight() { // func for working cycle of traffic lights
+    if (goStop) {
+        console.log('begin work!');
+        while (goStop) do {
+            // here write code of rechange directs north-south or weat-east
+            // and think about algorithm 24/08/2022
+        }
+    else console.log('stop work!');    
 }
 
 function way_West_East() { // lights position when green works for North and South ways
@@ -100,7 +112,7 @@ function way_West_East() { // lights position when green works for North and Sou
     for (i=1;i<4;i=i+2) {
         trLights[i].tr_Builder(false, false, true);
     }
-    console.log('North-South');
+    console.log('West-East');
 }
 
 function way_North_South() { // lights position when green works for West and East ways
@@ -110,7 +122,7 @@ function way_North_South() { // lights position when green works for West and Ea
     for (i=1;i<4;i=i+2) {
         trLights[i].tr_Builder(true, false, false);
     }
-    console.log('West-East');
+    console.log('North-South');
 }
 
 
@@ -257,8 +269,9 @@ if (canvas.getContext) {    //////////////////////////////////////////////////
     } */
     //proverkaTest(); 
 
-    setTimeout(way_North_South(), 5000);
-    setTimeout(way_West_East(), 5000);
+    //setTimeout(way_North_South, 2000);
+    //way_North_South();
+    //setTimeout(way_West_East, 8000);
 
 }
 
