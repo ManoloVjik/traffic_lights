@@ -67,8 +67,8 @@ function go01() {   // function for start of work traffic light algorithm
     console.log('GO! subprogram');
     goStop = true;
     step00();
-    console.log(goStop);
-    way_North_South();
+    console.log('goStop=', goStop);
+    //way_North_South();
     workTrLight();
     
     /*for (i=1;i<30;i++) {
@@ -98,11 +98,14 @@ function go02() {
 function workTrLight() { // func for working cycle of traffic lights
     if (goStop) {
         console.log('begin work!');
-        while (goStop) do {
+        while (goStop) {
             // here write code of rechange directs north-south or weat-east
             // and think about algorithm 24/08/2022
-        }
-    else console.log('stop work!');    
+            console.log('ogo');
+            setTimeout(way_North_South, 2000);    
+            setTimeout(way_West_East, 8000);
+        } 
+    } else console.log('stop work!');    
 }
 
 function way_West_East() { // lights position when green works for North and South ways
@@ -112,6 +115,7 @@ function way_West_East() { // lights position when green works for North and Sou
     for (i=1;i<4;i=i+2) {
         trLights[i].tr_Builder(false, false, true);
     }
+    pox = 0;
     console.log('West-East');
 }
 
@@ -122,6 +126,7 @@ function way_North_South() { // lights position when green works for West and Ea
     for (i=1;i<4;i=i+2) {
         trLights[i].tr_Builder(true, false, false);
     }
+    pox = 1;
     console.log('North-South');
 }
 
@@ -258,6 +263,20 @@ if (canvas.getContext) {    //////////////////////////////////////////////////
         trLights[i].tr_Builder(false, false, false);
     } */
     step00();
+
+    function quArts() { // takts generator
+        while (!goStop) {
+            if (pox==0) {
+                setTimeout(pox = 1, 6000);
+                console.log(pox);
+            } 
+            if (pox==1) {
+                setTimeout(pox = 0, 6000);
+                console.log(pox);
+            }
+        }
+    }
+    //quArts();
 
     /* function proverkaTest() {
         do {
