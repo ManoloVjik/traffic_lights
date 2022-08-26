@@ -102,8 +102,8 @@ function workTrLight() { // func for working cycle of traffic lights
             // here write code of rechange directs north-south or weat-east
             // and think about algorithm 24/08/2022
             console.log('ogo');
-            setTimeout(way_North_South, 2000);    
-            setTimeout(way_West_East, 8000);
+            way_North_South();    
+            setTimeout(way_West_East, 5000);
         } 
     } else console.log('stop work!');    
 }
