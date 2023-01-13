@@ -4,7 +4,7 @@ class Tr_Light {
         this.num = num;
         this.leftUpX = leftUpX;
         this.leftUpY = leftUpY;
-        this.attitude = attitude;
+        this.attitude = attitude; // 0 - horisontal attitude, 1 - vertical attitude
         this.types = types;
         this.ctxx = ctxx;
         let redd = false, yell = false, zell = false;
