@@ -1,5 +1,6 @@
 ﻿// It's the main block of Traffic Lights simulator
 // I'll use HTML CANVAS vithout any libraries
+// Michael Yudenko 14.01.2023
 let x=0, y=0;
 let trLights = [];
 let arcBegin=0, arcEnd=0;
@@ -8,60 +9,12 @@ let deltaX=0, deltaY=0;
 let i=0, j=0, ii=0, jj=0, pox=0;
 let goStop = false;
 let timerId;
-//let ctx;
 
 const canvas = document.getElementById("maincanvas");
-//console.log('we drew the canvas');
 
 function step00() {     // clear the lights!
     for (i=0;i<4;i++) {     
         trLights[i].tr_Builder(false, false, false);
-    }
-}
-// this steps functions needs to erase, it doesn't work, but I leave it here to take some of parts of the code!!!
-function step01() {     // first light position - red for lights 0 and 2, green for 1 and 3
-    for (i=0;i<4;i=i+2) {
-        trLights[i].tr_Builder(true, false, false);
-    }
-    for (i=1;i<4;i=i+2) {
-        trLights[i].tr_Builder(false, false, true);
-    }
-    console.log('first step');
-}
-function step02(pare_lights) {      //yellow blink
-    switch(pare_lights) {
-        case 0: {
-            trLights[0].tr_Builder(true, true, false);  // from red to green
-            trLights[2].tr_Builder(true, true, false);
-        }
-        case 1: {
-            trLights[1].tr_Builder(false, true, false);
-            trLights[3].tr_Builder(false, true, false);
-        }
-    }
-    console.log('yellow');
-}
-function step03() {
-    for (i=0;i<4;i=i+2) {
-        trLights[i].tr_Builder(false, false, true);
-    }
-    for (i=1;i<4;i=i+2) {
-        trLights[i].tr_Builder(true, false, false);
-    }
-    console.log('second step');
-}
-function proverka(){
-    switch (pox) {
-        case 0: {
-            setTimeout(step02(pox), 5000);
-            pox = 1;
-            break;
-        }
-        case 1: {
-            setTimeout(step02(pox), 5000);
-            pox = 0;
-            break;
-        }
     }
 }
 
@@ -78,66 +31,42 @@ function go01() {   // function for start of work traffic light algorithm
 function go02() { // 13.01.2023 - it works
     console.log('STOP! subprogram');
     goStop = false;
+    step00();
     clearTimeout(timerId);
     console.log("goStop = ", goStop);
 }
 
 function workTrLight2() { //13.01.2023 - it works, blinking west-east / north-south
+    // func for working cycle of traffic lights
     console.log('workTrLight2 begun to work!');
     if (goStop) {
         timerId = setTimeout(function workFunc1() {
             switch(pox) {
             case 1:
                 console.log("west-east way go");
+                for (i=0;i<4;i=i+2) {
+                    trLights[i].tr_Builder(false, false, true);
+                }
+                for (i=1;i<4;i=i+2) {
+                    trLights[i].tr_Builder(true, false, false);
+                }
                 pox = 0;
                 break;
             case 0:
                 console.log("north-south way go");
+                for (i=0;i<4;i=i+2) {
+                    trLights[i].tr_Builder(true, false, false);
+                }
+                for (i=1;i<4;i=i+2) {
+                    trLights[i].tr_Builder(false, false, true);
+                }
                 pox = 1;
                 break;
             }
             timerId = setTimeout(workFunc1, 5000);
-        }, 3000);
+        }, 100);
     }
 }
-
-function workTrLight() { // func for working cycle of traffic lights
-    if (goStop) {
-        console.log('begin work!');
-        while (goStop) {
-            // here write code of rechange directs north-south or weat-east
-            // and think about algorithm 24/08/2022
-            //console.log('ogo');
-            way_North_South();    
-            setTimeout(way_West_East, 3000);
-            //goStop = false;
-        } 
-    } else console.log('stop work!');    
-}
-
-function way_West_East() { // lights position when green works for North and South ways
-    /*for (i=0;i<4;i=i+2) {
-        trLights[i].tr_Builder(true, false, false);
-    }
-    for (i=1;i<4;i=i+2) {
-        trLights[i].tr_Builder(false, false, true);
-    }
-    pox = 0;*/ //13.01.2023
-
-    console.log('West-East');
-}
-
-function way_North_South() { // lights position when green works for West and East ways
-    /*for (i=0;i<4;i=i+2) {
-        trLights[i].tr_Builder(false, false, true);
-    }
-    for (i=1;i<4;i=i+2) {
-        trLights[i].tr_Builder(true, false, false);
-    }
-    pox = 1;*/ //13.01.2023
-    console.log('North-South');
-}
-
 
 if (canvas.getContext) {    //////////////////////////////////////////////////
     const ctx = canvas.getContext("2d");
@@ -266,39 +195,6 @@ if (canvas.getContext) {    //////////////////////////////////////////////////
         ctx.stroke();
     }    
     drawRoads();
-
-    /* for (i=0;i<4;i++) {
-        trLights[i].tr_Builder(false, false, false);
-    } */
-    //step00();
-
-    function quArts() { // takts generator
-        while (!goStop) {
-            if (pox==0) {
-                setTimeout(pox = 1, 6000);
-                console.log(pox);
-            } 
-            if (pox==1) {
-                setTimeout(pox = 0, 6000);
-                console.log(pox);
-            }
-        }
-    }
-    //quArts();
-
-    /* function proverkaTest() {
-        do {
-            /* step01();
-            setTimeout(proverka,5000);
-            setTimeout(step03,7000); 
-            console.log('proverkaTest');
-        } while (goStop);
-    } */
-    //proverkaTest(); 
-
-    //setTimeout(way_North_South, 2000);
-    //way_North_South();
-    //setTimeout(way_West_East, 8000);
 
 }
 
